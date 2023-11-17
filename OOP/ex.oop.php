@@ -28,5 +28,5 @@
     $a = new User;
     $a -> setInfor("nguyenphuc0062" , "Nguyenphuc@0062");
     $a -> checkInfor();
-    
+
 ?>
