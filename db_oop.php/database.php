@@ -4,6 +4,13 @@ class DB
 {
 
     public $conn;
+    // Trong phương thức __construct, $this->connection(); 
+    //có ý nghĩa là gọi phương thức connection trên đối tượng hiện tại ($this). 
+    //Điều này khởi tạo kết nối cơ sở dữ liệu và lưu trữ nó trong thuộc tính conn của đối tượng:
+    function __construct()
+    {
+        $this->connection();
+    }
 
     //không nói rõ là public hay privated là public
     function connection()
@@ -18,6 +25,3 @@ class DB
     }
 }
 $db = new DB ;
-
-$db ->connection();
-
