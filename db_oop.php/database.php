@@ -11,7 +11,6 @@ class DB
     {
         $this->connection();
     }
-
     //không nói rõ là public hay privated là public
     function connection()
     {
@@ -23,6 +22,14 @@ class DB
             echo "kết nối CSDL thành công" .'<br>';
         }
     }
+    //LỌC DỮ LIỆU BẰNG ESCAPE 
+    function escape_string($str){
+        return $this -> conn -> real_escape_string($str);
+    }
+    //run Sql
+    function query($sql){
+        return $this -> conn -> query($sql);
+    }
     //insert
     // $table là tên của bảng cơ sở dữ liệu mà bạn muốn chèn dữ liệu vào.
     // $data là một mảng associative, với key là tên cột và value là giá trị tương ứng cần chèn vào bảng.
@@ -32,9 +39,9 @@ class DB
         // Hàm sử dụng vòng lặp foreach để duyệt qua mảng $data.
         // Trong mỗi lần lặp, nó lấy key ($k) và value ($v) từ mảng $data.
         // $k (key) được thêm vào mảng $list_field, và $v (value) được thêm vào mảng $list_value.
-        foreach($data as $k => $v){
-            $list_field[] = "`{$k}`";
-            $list_value[] = "'{$v}'";
+        foreach($data as $column => $value){
+            $list_field[] = "`{$column}`";
+            $list_value[] = "'{$this->escape_string($value)}'";
         }
         // Hàm sử dụng implode để biến mảng $list_field và $list_value thành chuỗi.
         // Mỗi phần tử trong mảng được nối với nhau bằng dấu phẩy, tạo thành chuỗi các tên trường và chuỗi các giá trị tương ứng.
@@ -45,19 +52,19 @@ class DB
         $sql = "INSERT INTO {$table}({$list_field})
         VALUES ({$list_value})";
 
-        if($this->conn->query($sql) == TRUE){
+        if($this->query($sql) == TRUE){
             return $this -> conn -> insert_id;
             // insert_id mà là một thuộc tính của đối tượng mysqli
         }
         else{
             echo "Lỗi" . $this->conn->error;
         }
-        echo $sql;
+        // echo $sql;
     }
 }
 $db = new DB ;
     $data = array (
-        'username' => 'hoang_phuc134',
+        'username' => 'hoang_phuc99',
         'password' => password_hash('hoangphuc1234',PASSWORD_DEFAULT) ,
         'gmail' => 'nguyenphuc50@gmail.com'
     );
