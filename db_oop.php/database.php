@@ -30,6 +30,33 @@ class DB
     function query($sql){
         return $this -> conn -> query($sql);
     }
+    //Select
+    //Select column1, column2, column3,....
+    //from table_name Where ....
+    function get($table,$field = array(),$where=''){
+       $field = !empty($field) ? implode(',',$field) : $field ="*";
+    // Cấu trúc của toán tử này là condition ? expr1 : expr2
+    // nghĩa là nếu condition là true, expr1 sẽ được thực hiện,
+    // còn nếu false thì expr2 sẽ được thực hiện
+        $where = !empty($where) ? "WHERE {$where}":"";
+
+        $sql = "SELECT {$field} FROM {$table} {$where}";
+        echo $sql;
+        //nếu có dữ liệu thì trả bản ghi (hàng)
+
+        $result = $this ->query($sql);
+        if($result -> num_rows > 0){
+            $data = array();
+            while ($row = $result -> fetch_assoc()){
+                $data[] = $row;
+            }
+            return $data;
+        }
+        // không sẽ trả giá trị không có tồn tại trong database
+        else{
+            echo "Bản ghi không tồn tại ";
+        }
+    }
     //insert
     // $table là tên của bảng cơ sở dữ liệu mà bạn muốn chèn dữ liệu vào.
     // $data là một mảng associative, với key là tên cột và value là giá trị tương ứng cần chèn vào bảng.
@@ -64,8 +91,12 @@ class DB
 }
 $db = new DB ;
     $data = array (
-        'username' => 'hoang_phuc99',
-        'password' => password_hash('hoangphuc1234',PASSWORD_DEFAULT) ,
-        'gmail' => 'nguyenphuc50@gmail.com'
+       'username',
+       'password',
+       'gmail'
     );
-    echo $db -> insert('users',$data);
+    // echo $db -> insert('users',$data);
+    $users  = $db -> get('users',$data,"id = 2");
+    echo '<pre>';
+    print_r($users);
+    echo '<pre>';
