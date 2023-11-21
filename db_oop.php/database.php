@@ -88,15 +88,50 @@ class DB
         }
         // echo $sql;
     }
+    //update 
+    //update table name
+    //set column1 = value1, column2 = value2
+    //where condition
+    function update($table , $data= array(),$where = ""){
+        $data_insert = array();
+        foreach($data as $column => $value){
+            $data_insert[] = "`{$column}`= '{$value}'";
+        }
+        $data_insert = implode(',',$data_insert);
+        $where = !empty($where) ? "WHERE {$where}":"";
+        $sql = "UPDATE {$table} SET {$data_insert} {$where}";
+        if($this ->query($sql) == TRUE){
+            echo "Cập nhật thành công";
+        }
+        else{
+            echo "Cập nhật thất bại";
+        }
+    }
+    //delete
+    //delete
+    // DELETE FROM table_name WHERE condition;
+    function delete($table,$where=""){
+        $where = !empty($where) ? "WHERE {$where}":"";
+        $sql = "DELETE FROM {$table} {$where}";
+        if($this->query($sql)==TRUE){
+            echo "Xóa thành công";
+        }
+        else{
+            echo "Xóa thất bại";
+        }
+    }
 }
+
 $db = new DB ;
     $data = array (
-       'username',
-       'password',
-       'gmail'
+       'username'=> "Hoang Phuc",
+       'password'=> password_hash("hoangphuc0062",PASSWORD_DEFAULT)
     );
     // echo $db -> insert('users',$data);
-    $users  = $db -> get('users',$data,"id = 2");
-    echo '<pre>';
-    print_r($users);
-    echo '<pre>';
+    // $users  = $db -> get('users',$data,"id = 2");
+    // echo '<pre>';
+    // print_r($users);
+    // echo '<pre>';
+
+    // echo $db -> update("Users",$data,"id = 3").'<br>';
+    echo $db -> delete("Users",'gmail="nguyenphuc50@gmail.com"');
