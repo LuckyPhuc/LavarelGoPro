@@ -11,24 +11,39 @@
     
     //phương thức : hành động làm cái gì đó
     public function getPerimeter(){
-        return (2*($this->height+$this->width));
+        return (2  *($this-> height + $this -> weight));
     }
     //phương thức : hành động làm cái gì đó
     public function getArea(){
-        return ($this->height)*($this->width);
+        return ($this -> height) * ($this -> weight);
     }
-
+  } 
+$cachtinh = new Rectangle();//khoi tao class
+echo "Chu vi cua tam giác la: ". $cachtinh ->getPerimeter()."<br>";//goi phuong thuc ra de dung
+echo "Dien tich cua tam giác la: ". $cachtinh ->getArea()."<br>";
+class hinhtron{
+  public $bankinh = 3;
+  public $pi = 3.14;
+  public function getPerimeters(){
+    return $this->bankinh * $this->pi;
   }
-  // new khởi tạo đối tượng vào lớp đã cho trước
-  // cho trước 1: người ta đã xây dựng rồi.
-  // cho trước 2: mình tự xây dựng.
-  // khởi tạo đối tượng 
-  // đối tượng có thể là 1 số, 1 ký tự, 1 phương thức(function()), 1 đối tượng , 1 mảng(array) , 1 chuỗi(string)
-  $a = new Rectangle;
-  //khởi tạo phương thức
-  //echo $a -> getArea();
-  echo $a ->getPerimeter();
-   /* echo "<pre>";
-   var_dump($a);
-   echo "<pre>"; */
-?>
+  public function getArea(){
+    return $this->bankinh * $this->bankinh * ($this->pi * $this->pi ) ;
+  }
+}
+$hinhtron = new hinhtron();
+echo "<p>Chu vi cua hinh tron la:". $hinhtron ->getPerimeters() . "</p>"
+."<p>Dien tich cua hinh tron la:". $hinhtron ->getArea() . "</p>";
+
+class hinhvuong{
+  public $a = 100;
+  public function getPerimeters(){
+    return 4*$this->a;
+  }
+  public function getArea(){
+    return $this -> a * $this ->a;
+  }
+}
+$hinhvuong = new hinhvuong();
+echo "<p>Chu vi cua hinh vuong la:". $hinhvuong ->getPerimeters() . "</p>
+<p>Dien tich cua hinh vuong la:". $hinhvuong ->getArea() . "</p>";
