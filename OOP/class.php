@@ -1,8 +1,14 @@
 <?
   class Rectangle{
-    public $height = 30; // thuộc tính
-    public $weight = 20; // thuộc tính
-
+    public $height ; // thuộc tính
+    public $width ; // thuộc tính
+  // khi khởi tạo lớp Rectangle thì __construct nó tự mặc định chạy đầu tiên
+    public function __construct()
+    {
+      $this->height = 10;
+      $this->width = 20;
+    }
+    
     //phương thức : hành động làm cái gì đó
     public function getPerimeter(){
         return (2  *($this-> height + $this -> weight));
