@@ -116,11 +116,15 @@ Route::get('admin/products/create',[AdminProductController::class,'AddProduct'])
 Route::get('admin/products/delete',[AdminProductController::class,'DeleteProduct']);
 Route::get('admin/products/update',[AdminProductController::class,'UpdateProduct']);
 
-Route::get('child',function(){
-    $collection = array(
-        1=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18302','old'=> '23'),
-        2=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18303','old'=> '23'),
-        3=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18304','old'=> '23')
-    );
-    return view('child', compact('collection'));
+// Route::get('child',function(){
+//     $collection = array(
+//         1=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18302','old'=> '23'),
+//         2=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18303','old'=> '23'),
+//         3=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18304','old'=> '23')
+//     );
+//     return view('child', compact('collection'));
+// });
+
+Route::get('child',function($data = 'Lavarel go pro'){
+return $data;
 });
