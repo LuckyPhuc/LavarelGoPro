@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminProductController;
@@ -116,11 +117,23 @@ Route::get('admin/products/create',[AdminProductController::class,'AddProduct'])
 Route::get('admin/products/delete',[AdminProductController::class,'DeleteProduct']);
 Route::get('admin/products/update',[AdminProductController::class,'UpdateProduct']);
 
-Route::get('child',function(){
-    $collection = array(
-        1=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18302','old'=> '23'),
-        2=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18303','old'=> '23'),
-        3=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18304','old'=> '23')
+// Route::get('child',function(){
+//     $collection = array(
+//         1=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18302','old'=> '23'),
+//         2=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18303','old'=> '23'),
+//         3=> array('name'=> 'Nguyễn Dương Hoàng Phúc','grade'=> 'Web18304','old'=> '23')
+//     );
+//     return view('child', compact('collection'));
+// });
+
+// Route::get('child',function($data = 'Lavarel go pro'){
+// return $data;
+// });
+
+Route::get('user/insert',function(){
+    DB::table('users')->insert(
+        ['name'=> 'Nguyễn Dương Hoàng Phúc','email'=>'nguyenphuc123@gmail.com','password'=> bcrypt('nguyephuc0062')]
     );
-    return view('child', compact('collection'));
 });
+Route::get('posts/add', [PostController::class,'add']);
+Route::get('posts/show', [PostController::class,'show']);

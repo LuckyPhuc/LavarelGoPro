@@ -14,7 +14,10 @@
         # code...
     }
     @endphp --}}
-    @include('demo.test')
+    {{-- @include('demo.test') --}}
+    @isset($data)
+        Tiêu đề của bài viết là: {{ $data }}
+    @endisset
 @endsection
 
 @section('sidebar')
